@@ -26,7 +26,10 @@ console.log("let's build some charts!")
         // Set chart options
         var options = {'title':'What Kinds of Pizza I Ate Last Night',
                        'width':500,
-                       'height':800};
+                       'height':500,
+                       'legend':'left',
+                       'is3D':true
+                      };
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
