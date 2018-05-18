@@ -20,11 +20,15 @@ console.log("let's build some charts!")
       // instantiates the pie chart, passes in the data and
       // draws it.
 
+      //Onclick for button
       function showTimelineChart(){
-        drawStudyTimeline()
+        // get color from input, pass to draw chart function
+        // TODO: validate that it's a legit color string
+        let color = document.getElementById("color").value
+        drawStudyTimeline(color)
       }
 
-      function drawStudyTimeline(){
+      function drawStudyTimeline(color){
         var container = document.getElementById('study-timeline');
         var chart = new google.visualization.Timeline(container);
         var dataTable = new google.visualization.DataTable();
@@ -40,7 +44,7 @@ console.log("let's build some charts!")
         ]);
 
         var options = {
-          timeline: { singleColor: 'red'},
+          timeline: { singleColor: color },
         };
         
         chart.draw(dataTable, options);
