@@ -12,60 +12,43 @@ console.log("let's build some charts!")
       // 4. Be sure all callback function use different divs to draw in. Add a new div to HTML for each chart.
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart1);
-      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawDonationChart);
+
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
-      function drawChart1() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Banana Peppers', 2],
-          ['Anchovy', 1],
-          ['Pepperoni', 2]
+      function drawDonationChart() {
+        // #donation-chart is the container
+          var data = google.visualization.arrayToDataTable([
+          ['Category', 'Expenditure'],
+          ['Administrative',      4],
+          ['Fundraising',      16],
+          ['Youth Programs',  36],
+          ['Adult Programs', 44],
         ]);
 
-        // Set chart options
-        var options = {'title':'What Kinds of Pizza I Ate Last Night',
-                       'width':500,
-                       'height':500,
-                       'legend':'left',
-                       'is3D':true
-                      };
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
-        chart.draw(data, options);
-      }
-
-      function drawChart2() {
-
-        // Create the data table.
-        var data = google.visualization.arrayToDataTable([
-          ['Toppings', 'Slices', { role: 'style' }],
-          ['Mushrooms', 3 , '#76A7FA'],
-          ['Onions', 1, 'color: gold'],
-          ['Banana Peppers', 2, 'color: silver'],
-          ['Anchovy', 1, 'color: gold'],
-          ['Pepperoni', 2, 'color: silver']
-        ]);
-
-        // Set chart options
         var options = {
-              chart: {
-                title: 'What Kinds of Pizza I Ate Last Night',
-              },
-              bars: 'horizontal' //Required for Material Bar Charts.
-            };
-          
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.charts.Bar(document.getElementById('chart_div2'));
+          title: 'Organization Fund Allocation',
+          pieHole: 0.4,
+          slices: [
+            {color: '#8AD1C2'}, 
+            {color: '#9F8AD1'}, 
+            {color: '#D18A99'},
+            {color: '#BCD18A'}
+            ],
+          fontSize: 24,
+          height: 800,
+          width: 800,
+          legend: 'top'
+        };
+        
+        
+        // hex codes #8AD1C2, #9F8AD1, #D18A99, #BCD18A
+
+        var chart = new google.visualization.PieChart(document.getElementById('donation-chart'));
         chart.draw(data, options);
+        
       }
+        
+      
