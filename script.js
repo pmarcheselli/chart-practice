@@ -1,7 +1,7 @@
 console.log("let's build some charts!")
 
       // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['corechart','bar']});
 
 
       // ---- Only have to do this once!
@@ -48,26 +48,24 @@ console.log("let's build some charts!")
       function drawChart2() {
 
         // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Banana Peppers', 2],
-          ['Anchovy', 1],
-          ['Pepperoni', 2]
+        var data = google.visualization.arrayToDataTable([
+          ['Toppings', 'Slices', { role: 'style' }],
+          ['Mushrooms', 3 , '#76A7FA'],
+          ['Onions', 1, 'color: gold'],
+          ['Banana Peppers', 2, 'color: silver'],
+          ['Anchovy', 1, 'color: gold'],
+          ['Pepperoni', 2, 'color: silver']
         ]);
 
         // Set chart options
-        var options = {'title':'What Kinds of Pizza I Ate Last Night',
-                       'width':500,
-                       'height':500,
-                       'legend':'left',
-                       'is3D':true
-                      };
-
+        var options = {
+              chart: {
+                title: 'What Kinds of Pizza I Ate Last Night',
+              },
+              bars: 'horizontal' //Required for Material Bar Charts.
+            };
+          
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        var chart = new google.charts.Bar(document.getElementById('chart_div2'));
         chart.draw(data, options);
       }
