@@ -39,7 +39,11 @@ console.log("let's build some charts!")
           ['12 Mjr Class',  new Date(2020, 8, 1),  new Date(2022, 4, 1)]
         ]);
 
-        chart.draw(dataTable);
+        var options = {
+          timeline: { singleColor: 'red'},
+        };
+        
+        chart.draw(dataTable, options);
       }
 
       function drawStudyBar(){
