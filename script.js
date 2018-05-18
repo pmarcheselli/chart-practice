@@ -13,13 +13,16 @@ console.log("let's build some charts!")
 
       // Set a callback to run when the Google Visualization API is loaded.
       // google.charts.setOnLoadCallback(drawDonationChart);
-      google.charts.setOnLoadCallback(drawStudyTimeline);
       google.charts.setOnLoadCallback(drawStudyBar);
 
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
+
+      function showTimelineChart(){
+        drawStudyTimeline()
+      }
 
       function drawStudyTimeline(){
         var container = document.getElementById('study-timeline');
